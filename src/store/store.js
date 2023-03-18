@@ -30,5 +30,8 @@ const middleWares = [process.env.NODE_ENV === 'development' && logger].filter(Bo
 // export const persistor = persistStore(store)
 export const store = configureStore({
    reducer: rootReducer,
-   // middleware: middleWares,
+   middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+         serializableCheck: false,
+      }).concat(middleWares),
 })
